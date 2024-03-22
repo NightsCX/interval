@@ -3102,6 +3102,19 @@ function Library:CreateWindow(...)
             ZIndex = 1;
             Parent = TabButton;
         });
+        
+        local Highlight = Library:Create('Frame', {
+            BackgroundColor3 = Library.AccentColor;
+            BorderSizePixel = 0;
+            Size = UDim2.new(1.01, 0, 0, 1);
+            Position = UDim2.new(-0.01, 0, 0, -1);
+            ZIndex = 3;
+            Parent = TabButton;
+        });
+
+        Library:AddToRegistry(Highlight, {
+            BackgroundColor3 = 'AccentColor';
+        });
 
         local Blocker = Library:Create('Frame', {
             BackgroundColor3 = Library.SelectedTabColor;
@@ -3183,6 +3196,16 @@ function Library:CreateWindow(...)
             Blocker.BackgroundTransparency = 0;
             TabButton.BackgroundColor3 = Library.MainColor;
             TabButton.BackgroundColor3 = Library.SelectedTabColor;
+            TabButtonLabel.TextColor3 = Library.AccentColor;
+            Library.RegistryMap[TabButton].Properties.BackgroundColor3 = 'SelectedTabColor';
+            TabFrame.Visible = true;
+            TabFrame.Visible = true;
+            Blocker.BackgroundTransparency = 0;
+            TabButton.BackgroundColor3 = Library.SelectedTabColor;
+            TabButtonLabel.TextColor3 = Library.AccentColor;
+            Highlight.BackgroundColor3 = Library.AccentColor;
+            Highlight.ZIndex = 3;
+            Highlight.Visible = true;
             Library.RegistryMap[TabButton].Properties.BackgroundColor3 = 'SelectedTabColor';
             TabFrame.Visible = true;
         end;
@@ -3190,6 +3213,10 @@ function Library:CreateWindow(...)
         function Tab:HideTab()
             Blocker.BackgroundTransparency = 1;
             TabButton.BackgroundColor3 = Library.BackgroundColor;
+            TabButtonLabel.TextColor3 = Library.FontColor;
+            Highlight.BackgroundColor3 = Library.OutlineColor;
+            Highlight.ZIndex = 1;
+            Highlight.Visible = false;
             Library.RegistryMap[TabButton].Properties.BackgroundColor3 = 'BackgroundColor';
             TabFrame.Visible = false;
         end;

@@ -204,7 +204,7 @@ local library = {
     gamename    = 'apocalypse rising 2',
     themes      = themes,
     theme       = themes.default,
-    signal      = loadstring(game:HttpGetAsync('https://paste.website/p/d82eacd3-09c1-4f3a-9f41-222e808c4f78.txt'))(),
+    signal      = loadstring(game:HttpGetAsync('https://rentry.org/b2xbaffk/raw'))(),
     stat        = {fps = 0, ping = 0},
     drawings    = {
         active    = {},

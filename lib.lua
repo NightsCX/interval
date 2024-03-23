@@ -663,11 +663,6 @@ do
                 tween.value_current = tween.value_start:lerp(tween.value_new, tween.progress_tween)
             end
             
-            if utility.table.includes(object, '_object') and not rawget(object._object, '__OBJECT_EXISTS') == true then
-                tween.connection:Disconnect()
-                tween.Completed:Fire()
-                return
-            end
 
             object[property] = tween.value_current
 
@@ -2103,10 +2098,6 @@ do
         end
 
         function drawing:Remove()
-
-            if rawget(drawing._object, '__OBJECT_EXISTS') then
-                self._object:Remove()
-            end
 
             if drawing._properties.Parent ~= nil then
                 drawing._properties.Parent._children[drawing] = nil

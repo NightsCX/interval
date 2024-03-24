@@ -1504,7 +1504,7 @@ do
 
         function library.meta.options.textbox:release()
             if self.focused then
-                actionservice:UnbindAction('FreezeMovement')
+                actionservice:UnbindAction('DisableKeyboard')
                 self.focused = false
                 self.connection:Disconnect()
             end

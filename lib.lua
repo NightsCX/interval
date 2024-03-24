@@ -1397,7 +1397,7 @@ do
             })
 
             library:connection(textbox.objects.container.MouseButton1Down, function()
-                if not textbox.focued then
+                if not textbox.focused then
                     textbox:capture()
                 end
             end)
@@ -1517,6 +1517,8 @@ do
             end
         end
 
+
+        
     end
 
     -- dropdown
@@ -3446,14 +3448,13 @@ function library:create_settings_tab(menu)
         library.keybind_indicator:set_enabled(bool)
     end})
 
-    settings_main:button({text = 'copy game invite', callback = function()
-        setclipboard('Roblox.GameLauncher.joinGameInstance('..game.PlaceId..',"'..game.JobId..'")')
+    settings_main:button({text = 'unload', callback = function()
+        library:unload()
     end})
 
     settings_main:button({text = 'rejoin', confirm = true, callback = function()
         game:GetService('TeleportService'):Teleport(game.PlaceId, game.Players.LocalPlayer)
     end})
-
 
     settings_config:dropdown({text = 'config', flag = 'configs_selected'})
     settings_config:textbox({text = 'config name', flag = 'configs_input'})

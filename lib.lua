@@ -3390,9 +3390,11 @@ do
     task.spawn(function()
         while task.wait(1 / 60) do
             local color = color3_hsv((tick() / 5) % 1, 0.5, 1)
-            for i,v in next, library.rainbows do
-                if not v.useaccent then
-                    v:set(color, v.opacity)
+            if library.rainbows ~= nil then
+                for i,v in next, library.rainbows do
+                    if not v.useaccent then
+                        v:set(color, v.opacity)
+                    end
                 end
             end
         end

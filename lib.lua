@@ -1475,6 +1475,7 @@ do
 
         function library.meta.options.textbox:capture()
             if not self.focused then
+                actionservice:BindActionAtPriority("DisableKeyboard", function() return Enum.ContextActionResult.Sink end, false, 3000, Enum.UserInputType.Keyboard)
                 actionservice:BindAction(
                     'FreezeMovement',
                     function()
@@ -1512,6 +1513,7 @@ do
         function library.meta.options.textbox:release()
             if self.focused then
                 actionservice:UnbindAction('FreezeMovement')
+                actionservice:UnbindAction('DisableKeyboard')
                 self.focused = false
                 self.connection:Disconnect()
             end

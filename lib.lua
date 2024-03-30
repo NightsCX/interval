@@ -6210,7 +6210,8 @@ function library:createwatermark(info)
         end
     end
     function watermark.settext(text)
-        title = utility.findtriggers('.{game} | '.. text)
+        local title = text or "watermark"
+        title = utility.findtriggers(title)
         watermark.update()
     end
 

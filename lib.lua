@@ -447,7 +447,7 @@ function library:load_config(cfg_name)
         for flag, v in next, config do
             local func = flags[flag]
             if func then
-                print(flag)
+                rconsoleprint(flag)
                 func(v)
             end
         end

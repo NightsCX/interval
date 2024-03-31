@@ -1475,7 +1475,6 @@ do
 
         function library.meta.options.textbox:capture()
             if not self.focused then
-                print("sss")
                 actionservice:BindActionAtPriority("DisableKeyboard", function() return Enum.ContextActionResult.Sink end, false, 3000, Enum.UserInputType.Keyboard)
 
                 self.focused = true
@@ -1505,7 +1504,6 @@ do
 
         function library.meta.options.textbox:release()
             if self.focused then
-                print("ddd")
                 actionservice:UnbindAction('DisableKeyboard')
                 self.focused = false
                 self.connection:Disconnect()

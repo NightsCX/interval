@@ -460,7 +460,7 @@ do
 
     function library:update_notifications()
         for i,v in next, self.notifs do
-            utility:tween(v.objects.container, 'Position', udim2_new(0,5,0,100 + (i * 25)), 0.05)
+            utility:tween(v.objects.container, 'Position', udim2_new(0,-3,0,100 + (i * 25)), 0.05)
         end
     end
 
@@ -483,7 +483,7 @@ do
         function notification:remove()
             table_remove(library.notifs, table_find(library.notifs, notification))
             library:update_notifications()
-            self.objects.container:Remove()
+
         end
 
         task.spawn(function()
@@ -3425,29 +3425,10 @@ library.dropdown.objects.border_outer = library:create('outline', library.dropdo
 
 function library:create_settings_tab(menu)
     local tab = menu:tab({text = 'settings', order = 999})
-    local settings_main = tab:section({text = 'main', side = 1})
-    local settings_config = tab:section({text = 'config', side = 2})
-
-    settings_main:keybind({text = 'open / close', flag = 'menubind', default = Enum.KeyCode.RightShift, callback = function(bool)
-        menu:set_open(bool, 0.1)
-    end})
-
-    settings_main:colorpicker({text = 'accent', flag = 'theme_accent', default = library.themes.default.Accent, callback = function(color)
-        library.theme.Accent = color
-        library:update_theme()
-    end})
-
-    settings_main:toggle({text = 'keybind indicator', flag = 'keybind_indicator_enabled', callback = function(bool)
-        library.keybind_indicator:set_enabled(bool)
-    end})
-
-    settings_main:button({text = 'unload', callback = function()
-        library:unload()
-    end})
-
-    settings_main:button({text = 'rejoin', confirm = true, callback = function()
-        game:GetService('TeleportService'):Teleport(game.PlaceId, game.Players.LocalPlayer)
-    end})
+    
+    local settings_config = tab:section({text = 'config', side = 1})
+    local settings_main = tab:section({text = 'main', side = 2})
+    local settings_theme = tab:section({text = 'theme', side = 2})
 
     settings_config:dropdown({text = 'config', flag = 'configs_selected'})
     settings_config:textbox({text = 'config name', flag = 'configs_input'})
@@ -3477,6 +3458,38 @@ function library:create_settings_tab(menu)
         end, function(err)
             library:notification(err or ("unable to load config '%s'"):format(flags.configs_selected), 5, color3_new(1, 0.35, 0.35))
         end)
+    end})
+
+    settings_main:keybind({text = 'open / close', flag = 'menubind', default = Enum.KeyCode.RightShift, callback = function(bool)
+        menu:set_open(bool, 0.1)
+    end})
+
+    settings_main:toggle({text = 'keybind indicator', flag = 'keybind_indicator_enabled', callback = function(bool)
+        library.keybind_indicator:set_enabled(bool)
+    end})
+
+    settings_main:button({text = 'rejoin', confirm = true, callback = function()
+        game:GetService('TeleportService'):Teleport(game.PlaceId, game.Players.LocalPlayer)
+    end})
+
+    settings_theme:colorpicker({text = 'accent', flag = 'theme_accent', default = library.themes.default['Accent'], callback = function(color)
+        library.theme['Accent'] = color
+        library:update_theme()
+    end})
+    
+    settings_theme:colorpicker({text = 'background', flag = 'theme_background', default = library.themes.default['Background'], callback = function(color)
+        library.theme['Background'] = color
+        library:update_theme()
+    end})
+
+    settings_theme:colorpicker({text = 'primary text', flag = 'theme_primarytext', default = library.themes.default['Primary Text'], callback = function(color)
+        library.theme['Primary Text'] = color
+        library:update_theme()
+    end})
+
+    settings_theme:colorpicker({text = 'secondary text', flag = 'theme_secondarytext', default = library.themes.default['Secondary Text'], callback = function(color)
+        library.theme['Secondary Text'] = color
+        library:update_theme()
     end})
 
     if isfolder(library.cheatname .. '/' .. library.gamename .. '/configs') then

@@ -1774,7 +1774,7 @@ do
         function library.meta.options.keybind:new(properties)
             properties = properties or {}
 
-            local keybind = library:create('option', properties, self, 'keybind'), library.meta.options.keybind
+            local keybind = library:create('option', properties, self, 'keybind')
             keybind.parent = self
             keybind.binding = false
             keybind.state = false
@@ -3471,6 +3471,7 @@ function library:create_settings_tab(menu)
     settings_main:button({text = 'rejoin', confirm = true, callback = function()
         game:GetService('TeleportService'):Teleport(game.PlaceId, game.Players.LocalPlayer)
     end})
+
 
     settings_theme:colorpicker({text = 'accent', flag = 'theme_accent', default = library.themes.default['Accent'], callback = function(color)
         library.theme['Accent'] = color

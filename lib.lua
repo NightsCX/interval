@@ -1888,6 +1888,10 @@ do
             return self._type == 'option' and self or keybind
         end
 
+        function library.meta.options.keybind:set_state(state)
+            self.mode = state
+        end
+
         function library.meta.options.keybind:set_text(text)
             self.objects.keytext.Text = '[' .. tostring(text) .. ']'
             self.objects.keytext.Position = udim2_new(1,-self.objects.keytext.TextBounds.X,0,0)

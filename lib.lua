@@ -1714,6 +1714,10 @@ do
 
             for _, objects in next, library.dropdown.objects.values do
                 local value = dropdown.values[_]
+                if value == nil then
+                    objects.container.Visible = false
+                    continue
+                end
 
                 local selected = ((dropdown.multi and dropdown.selected[value] == true) or (not dropdown.multi and dropdown.selected == value))
 

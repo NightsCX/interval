@@ -1527,6 +1527,7 @@ do
             dropdown.maxvalues = 10
             dropdown.values = {}
             dropdown.selected = properties.multi and {} or ''
+            dropdown.customnil = properties.CustomNil or "none"
 
             for i,v in next, properties.values or {} do
                 dropdown:add_value(v)
@@ -1544,7 +1545,7 @@ do
             dropdown.objects.status_text = library:create('text', {
                 Theme = {['Color'] = 'Option Text 2'},
                 Position = udim2_new(0,1,0,-3),
-                Text = 'none',
+                Text = dropdown.customnil,
                 Center = dropdown.center or false,
                 ZIndex = dropdown.zindex + 5,
                 Parent = dropdown.objects.background,
@@ -1683,7 +1684,7 @@ do
                 full_text = table_concat(full_text, ', ') or ''
             end
 
-            self.objects.status_text.Text = 'none'
+            self.objects.status_text.Text = self.customnil
 
             for i,v in next, full_text:split('') do
                 text = text .. v

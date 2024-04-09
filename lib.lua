@@ -257,8 +257,7 @@ do
         library[i] = v
     end
 
-    makefolder(library.cheatname .. '/' .. library.gamename)
-    makefolder(library.cheatname .. '/' .. library.gamename .. '/configs')
+    makefolder(library.cheatname .. '/' .. "configs")
 
     library.mouse_strings = {
         [Enum.UserInputType.MouseButton1] = 'MB1',
@@ -507,7 +506,7 @@ do
     -- configs
     function library:load_config(config)
         if typeof(config) == 'string' then
-            local path = library.cheatname .. '/' .. library.gamename .. '/configs/' .. config .. '.txt'
+            local path = library.cheatname .. '/' .. 'configs/' .. config .. '.txt'
             config = http:JSONDecode(readfile(path))
         end
 
@@ -544,7 +543,7 @@ do
 
     function library:save_config(name, existscheck)
 
-        local path = library.cheatname .. '/' .. library.gamename .. '/configs/' .. name .. '.txt'
+        local path = library.cheatname .. '/' .. 'configs/' .. name .. '.txt'
         
         if existscheck then
             assert(isfile(path) == false, ("unable to create config '%s' [already exists]"):format(name))
@@ -3478,7 +3477,6 @@ function library:create_settings_tab(menu)
         game:GetService('TeleportService'):Teleport(game.PlaceId, game.Players.LocalPlayer)
     end})
 
-
     settings_theme:colorpicker({text = 'accent', flag = 'theme_accent', default = library.themes.default['Accent'], callback = function(color)
         library.theme['Accent'] = color
         library:update_theme()
@@ -3499,8 +3497,8 @@ function library:create_settings_tab(menu)
         library:update_theme()
     end})
 
-    if isfolder(library.cheatname .. '/' .. library.gamename .. '/configs') then
-        for i,v in next, listfiles(library.cheatname .. '/' .. library.gamename .. '/configs') do
+    if isfolder(library.cheatname .. '/configs') then
+        for i,v in next, listfiles(library.cheatname .. '/configs') do
             local ext = '.'..v:split('.')[#v:split('.')];
             if ext == '.txt' then
                 options.configs_selected:add_value(v:split('\\')[#v:split('\\')]:sub(1,-#ext-1))

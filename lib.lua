@@ -1359,6 +1359,7 @@ do
     do
         library.meta.options.textbox = {}
         library.meta.options.textbox.__index = library.meta.options.textbox
+        setmetatable(library.meta.options.textbox, library.meta.options)
 
         function library.meta.options.textbox:new(properties)
             local textbox = library:create('option', properties, self, 'textbox')

@@ -2329,7 +2329,7 @@ do
         menu.objects.title = library:create('text', {
             Theme    = {['Color'] = 'Primary Text'},
             Position = udim2_new(0.5,0,0,-18),
-            Center   = true,
+            Center   = false,
             Outline  = true,
             Text     = menu.text,
             Parent   = menu.objects.background
@@ -3083,7 +3083,7 @@ do
         indicator.objects.title = library:create('text', {
             Theme = {['Color'] = 'Primary Text'},
             Position = udim2_new(0.5,0,0,2),
-            Center = true,
+            Center = false,
             Text = indicator.title,
             Parent = indicator.objects.background,
         })
@@ -3402,7 +3402,7 @@ do
 end
 
 -- // finish
-library.keybind_indicator = library:create('indicator', {title = 'keybinds', position = udim2_new(0,10,0,450), enabled = false})
+library.keybind_indicator = library:create('indicator', {title = 'Keybinds', position = udim2_new(0,10,0,450), enabled = false})
 library.colorpicker = library:create('colorpicker', {})
 library.dropdown = {selected = nil, objects = {values = {}}, connections = {}}
 
@@ -3428,16 +3428,16 @@ library.dropdown.objects.border_inner = library:create('outline', library.dropdo
 library.dropdown.objects.border_outer = library:create('outline', library.dropdown.objects.border_inner, {Theme = {['Color'] = 'Border'}})
 
 function library:create_settings_tab(menu)
-    local tab = menu:tab({text = 'settings', order = 999})
+    local tab = menu:tab({text = 'Settings', order = 999})
     
-    local settings_config = tab:section({text = 'config', side = 1})
-    local settings_main = tab:section({text = 'main', side = 2})
-    local settings_theme = tab:section({text = 'theme', side = 2})
+    local settings_config = tab:section({text = 'Config', side = 1})
+    local settings_main = tab:section({text = 'Main', side = 2})
+    local settings_theme = tab:section({text = 'Theme', side = 2})
 
-    settings_config:dropdown({text = 'config', flag = 'configs_selected'})
-    settings_config:textbox({text = 'config name', flag = 'configs_input'})
+    settings_config:dropdown({text = 'Config', flag = 'configs_selected'})
+    settings_config:textbox({text = 'Config Name', flag = 'configs_input'})
 
-    settings_config:button({text = 'create', confirm = true, callback = function()
+    settings_config:button({text = 'Create', confirm = true, callback = function()
         xpcall(function()
             library:save_config(flags.configs_input, true)
             library:notification(("successfully created config '%s'"):format(flags.configs_input), 5, color3_new(0.35, 1, 0.35))
@@ -3446,7 +3446,7 @@ function library:create_settings_tab(menu)
         end)
     end})
 
-    settings_config:button({text = 'save', confirm = true, callback = function()
+    settings_config:button({text = 'Save', confirm = true, callback = function()
         xpcall(function()
             library:save_config(flags.configs_selected)
             library:notification(("successfully saved config '%s'"):format(flags.configs_selected), 5, color3_new(0.35, 1, 0.35))
@@ -3455,7 +3455,7 @@ function library:create_settings_tab(menu)
         end)
     end})
 
-    settings_config:button({text = 'load', confirm = true, callback = function()
+    settings_config:button({text = 'Load', confirm = true, callback = function()
         xpcall(function()
             library:load_config(flags.configs_selected)
             library:notification(("successfully loaded config '%s'"):format(flags.configs_selected), 5, color3_new(0.35, 1, 0.35))
@@ -3464,34 +3464,34 @@ function library:create_settings_tab(menu)
         end)
     end})
 
-    settings_main:keybind({text = 'open / close', flag = 'menubind', default = Enum.KeyCode.RightShift, callback = function(bool)
+    settings_main:keybind({text = 'Open / Close', flag = 'menubind', default = Enum.KeyCode.RightShift, callback = function(bool)
         menu:set_open(bool, 0.1)
     end})
 
-    settings_main:toggle({text = 'keybind indicator', flag = 'keybind_indicator_enabled', callback = function(bool)
+    settings_main:toggle({text = 'Keybinds List', flag = 'keybind_indicator_enabled', callback = function(bool)
         library.keybind_indicator:set_enabled(bool)
     end})
 
-    settings_main:button({text = 'rejoin', confirm = true, callback = function()
+    settings_main:button({text = 'Rejoin', confirm = true, callback = function()
         game:GetService('TeleportService'):Teleport(game.PlaceId, game.Players.LocalPlayer)
     end})
 
-    settings_theme:colorpicker({text = 'accent', flag = 'theme_accent', default = library.themes.default['Accent'], callback = function(color)
+    settings_theme:colorpicker({text = 'Accent', flag = 'theme_accent', default = library.themes.default['Accent'], callback = function(color)
         library.theme['Accent'] = color
         library:update_theme()
     end})
     
-    settings_theme:colorpicker({text = 'background', flag = 'theme_background', default = library.themes.default['Background'], callback = function(color)
+    settings_theme:colorpicker({text = 'Background', flag = 'theme_background', default = library.themes.default['Background'], callback = function(color)
         library.theme['Background'] = color
         library:update_theme()
     end})
 
-    settings_theme:colorpicker({text = 'primary text', flag = 'theme_primarytext', default = library.themes.default['Primary Text'], callback = function(color)
+    settings_theme:colorpicker({text = 'Primary Text', flag = 'theme_primarytext', default = library.themes.default['Primary Text'], callback = function(color)
         library.theme['Primary Text'] = color
         library:update_theme()
     end})
 
-    settings_theme:colorpicker({text = 'secondary text', flag = 'theme_secondarytext', default = library.themes.default['Secondary Text'], callback = function(color)
+    settings_theme:colorpicker({text = 'Secondary Text', flag = 'theme_secondarytext', default = library.themes.default['Secondary Text'], callback = function(color)
         library.theme['Secondary Text'] = color
         library:update_theme()
     end})

@@ -858,7 +858,7 @@ do
     function library.fovcircle:update()
         self:update_radius()
         self:update_position()
-        self:set('Color', flags[self._flag .. '_fov_color'], true)
+        self:set('Color', flags[self._flag .. '_fov_color'])
         self:set('Visible', flags[self._flag .. '_fov_enabled'])
         self:set('NumSides', flags[self._flag .. '_fov_sides'])
         self._components[3].Color = color3_new(0,0,0)

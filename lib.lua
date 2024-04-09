@@ -2329,7 +2329,7 @@ do
         menu.objects.title = library:create('text', {
             Theme    = {['Color'] = 'Primary Text'},
             Position = udim2_new(0.5,0,0,-18),
-            Center   = false,
+            Center   = true,
             Outline  = true,
             Text     = menu.text,
             Parent   = menu.objects.background
@@ -3083,7 +3083,7 @@ do
         indicator.objects.title = library:create('text', {
             Theme = {['Color'] = 'Primary Text'},
             Position = udim2_new(0.5,0,0,2),
-            Center = false,
+            Center = true,
             Text = indicator.title,
             Parent = indicator.objects.background,
         })

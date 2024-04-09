@@ -201,7 +201,6 @@ local library = {
     notifs      = {},
     debugmode   = false,
     cheatname   = 'hyphon',
-    gamename    = 'apocalypse rising 2',
     themes      = themes,
     theme       = themes.default,
     signal      = loadstring(game:HttpGetAsync('https://rentry.org/b2xbaffk/raw'))(),

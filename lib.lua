@@ -532,7 +532,7 @@ do
                 elseif option.class == 'dropdown' then
                     option:select(value)
                 elseif option.class == 'textbox' then
-                    option:set_text(option.text)
+                    option:set_text(value)
                 elseif option.class == 'keybind' then
                     option:set_bind(utility.table.includes(Enum.KeyCode, value) and Enum.KeyCode[value] or utility.table.includes(Enum.UserInputType, value) and Enum.UserInputType[value])
                 end

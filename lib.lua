@@ -1527,6 +1527,7 @@ do
             dropdown.values = {}
             dropdown.selected = properties.multi and {} or ''
             dropdown.customnil = properties.CustomNil or "none"
+            dropdown.default = properties.default
 
             for i,v in next, properties.values or {} do
                 dropdown:add_value(v)
@@ -1638,6 +1639,7 @@ do
             dropdown.objects.border_outer   = library:create('outline', dropdown.objects.border_mid,   {['Theme'] = {['Color'] = 'Border 1'}})
             
             table_insert(self.options, dropdown)
+            self:select(dropdown.default)
             if properties.flag ~= nil then
                 library.flags[properties.flag] = dropdown.selected
             end

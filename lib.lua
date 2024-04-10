@@ -1638,7 +1638,9 @@ do
             dropdown.objects.border_mid     = library:create('outline', dropdown.objects.border_inner, {['Theme'] = {['Color'] = 'Border 2'}})
             dropdown.objects.border_outer   = library:create('outline', dropdown.objects.border_mid,   {['Theme'] = {['Color'] = 'Border 1'}})
             
-            dropdown:select(dropdown.default)
+            if dropdown.default ~= nil then
+                dropdown:select(dropdown.default)
+            end
             table_insert(self.options, dropdown)
             if properties.flag ~= nil then
                 library.flags[properties.flag] = dropdown.selected

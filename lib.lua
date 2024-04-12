@@ -479,9 +479,11 @@ do
         end
 
         function notification:remove()
+            utility:tween(notification.objects.label, 'Transparency', 1, 0.5)
+            utility:tween(notification.objects.background, 'Transparency', 1, 0.5)
+            utility:tween(notification.objects.progress, 'Transparency', 1, 0.5)
             table_remove(library.notifs, table_find(library.notifs, notification))
             library:update_notifications()
-
         end
 
         task.spawn(function()
